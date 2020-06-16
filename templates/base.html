@@ -1,0 +1,24 @@
+<head>
+    <title> QuikChat </title>
+</head>
+
+<body>
+    <h1> QuikChat </h1>
+    <a href=" {{ url_for('index') }} ">Main</a>
+
+    {% if current_user.is_anonymous %}
+    <a href="{{ url_for('login') }}">Login</a>
+    <a href="{{ url_for('register') }}">Register</a>
+    {% else %}
+    <a href="{{ url_for('logout') }}">Logout</a> 
+    <p> Logged in as {{ current_user.username }} </p>
+    {% endif %}
+    <hr>
+    {% for message in get_flashed_messages() %}
+        {{ message }}
+        <hr>
+    {% endfor %}
+    
+    {% block content %}
+    {% endblock %}
+</body>

@@ -1,0 +1,8 @@
+
+<p>
+    {{ formitem.label() }} <br>
+    {{ formitem() }}
+    {% for error in formitem.errors %}
+    <span style='color:red'>error</span>
+    {% endfor %}
+</p>

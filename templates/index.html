@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<form method='POST' novalidate>
+    <!-- Hidden tag required by flask-wtf forms -->
+    {{ chatForm.hidden_tag() }}
+    {{ chatForm.chat.label }} {{ chatForm.chat() }}
+    {{ chatForm.submit() }}
+</form>
+
+{% for post in posts %}
+<p> 
+[{{ post.timestamp.strftime("%H:%M:%S")}}]
+<b>{% if post.author %}{{ post.author.username }}{% else %}Guest{% endif %}</b>: 
+{{ post.content }}
+</p>
+{% endfor %}
+
+<form method='POST' action='/clear_chat'>
+    <input type="submit" value="Clear Chat">
+</form>
+{% endblock %}
+
